@@ -92,6 +92,23 @@
     bars.forEach((b) => bo.observe(b));
   }
 
+  /* Skill bars (why choose us) */
+  const fills = document.querySelectorAll(".fill[data-w]");
+  if ("IntersectionObserver" in window && fills.length) {
+    const fo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.width = e.target.dataset.w + "%";
+            fo.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    fills.forEach((f) => fo.observe(f));
+  }
+
   /* Contact form (front-end demo) */
   const form = document.getElementById("devis-form");
   if (form) {

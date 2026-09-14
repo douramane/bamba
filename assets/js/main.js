@@ -2,6 +2,34 @@
 (function () {
   "use strict";
 
+  /* Photos: prefer local file (assets/img/photos), fall back to CDN if not localized yet */
+  var CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_30l04nmCFPVxWFiigwWOAtRGAtC/";
+  var PHOTOS = {
+    hero: "hf_20260914_111307_7e07cc12-54d3-4e02-a6df-abff505d7205.png",
+    construction: "hf_20260914_111307_567fb899-2f92-40a9-840f-721a2737169d.png",
+    logistique: "hf_20260914_111306_46f2ee02-3461-4b48-bc27-80a9d1785088.png",
+    frigo: "hf_20260914_111307_f0f43e96-3b76-47b7-9a60-c78d41f03d4d.png",
+    entrepot: "hf_20260914_111306_fa7984ac-1a23-4e1d-b04a-bda2f7a30f24.png",
+    "projet-immeuble": "hf_20260914_111307_76f597a1-5c42-4328-8568-09ff38e2bee3.png",
+    "projet-terrassement": "hf_20260914_111307_bedcdac3-7086-46c0-a75e-4b75546eeecf.png",
+    "projet-materiaux": "hf_20260914_111307_4e8f4840-adca-4cb1-b230-7978cc58dbd0.png",
+    equipe: "hf_20260914_111306_a11ab6ff-2472-4eaa-a999-bc07e6fe52a6.png",
+  };
+  document.querySelectorAll("[data-photo]").forEach(function (el) {
+    var key = el.getAttribute("data-photo");
+    if (!PHOTOS[key]) return;
+    var local = "assets/img/photos/" + key + ".png";
+    var cdn = CDN + PHOTOS[key];
+    var probe = new Image();
+    probe.onload = function () { apply(local); };
+    probe.onerror = function () { apply(cdn); };
+    probe.src = local;
+    function apply(url) {
+      if (el.tagName === "IMG") { el.src = url; }
+      else { el.style.backgroundImage = "url('" + url + "')"; el.classList.add("has-photo"); }
+    }
+  });
+
   /* Sticky header state */
   const header = document.querySelector(".site-header");
   const onScroll = () => {

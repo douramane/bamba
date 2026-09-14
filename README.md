@@ -39,6 +39,27 @@ python3 -m http.server 8000
 # puis http://localhost:8000
 ```
 
+## Photos
+
+Le site est **photo-led** : hero, pôles, galerie de réalisations et pages
+Services/À propos utilisent de vraies photographies (contexte BTP & logistique).
+
+- Les images s'affichent automatiquement : le site tente d'abord un fichier
+  **local** (`assets/img/photos/<nom>.png`), puis bascule sur le **CDN** si le
+  fichier n'est pas encore présent.
+- Pour **auto-héberger** les photos (recommandé en production), lancez une fois :
+
+  ```bash
+  bash download-assets.sh
+  ```
+
+  Les images seront téléchargées dans `assets/img/photos/` ; committez-les.
+- Pour remplacer une photo par la vôtre, déposez simplement un fichier PNG du
+  même nom dans `assets/img/photos/` (ex. `hero.png`, `logistique.png`).
+
+Noms utilisés : `hero`, `construction`, `logistique`, `frigo`, `entrepot`,
+`projet-immeuble`, `projet-terrassement`, `projet-materiaux`, `equipe`.
+
 ## Personnalisation
 
 - **Couleurs & typographie** : variables CSS en haut de `assets/css/style.css` (`:root`).

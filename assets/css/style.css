@@ -85,6 +85,7 @@ p { margin: 0 0 1em; }
   cursor: pointer;
   transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s, color .3s, border-color .3s;
   will-change: transform;
+  white-space: nowrap;
 }
 .btn svg { width: 1.05em; height: 1.05em; }
 .btn-gold {
@@ -114,6 +115,8 @@ p { margin: 0 0 1em; }
 }
 .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 12px; font-family: var(--ff-head); font-weight: 800; }
+.brand-logo { height: 46px; width: auto; flex: none; display: block; transition: height .4s var(--ease); }
+.scrolled .brand-logo { height: 40px; }
 .brand-mark {
   width: 42px; height: 42px; border-radius: 11px; flex: none;
   background: linear-gradient(140deg, var(--gold-500), var(--gold-600));
@@ -121,15 +124,16 @@ p { margin: 0 0 1em; }
   box-shadow: 0 6px 16px rgba(179,130,61,.4);
 }
 .brand-mark svg { width: 24px; height: 24px; }
-.brand-name { display: flex; flex-direction: column; line-height: 1; }
+.brand-name { display: flex; flex-direction: column; line-height: 1; white-space: nowrap; }
 .brand-name b { font-size: 1.15rem; letter-spacing: .04em; color: #fff; transition: color .4s; }
 .brand-name span { font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: var(--gold-400); font-weight: 600; margin-top: 3px; }
 .scrolled .brand-name b { color: var(--navy-900); }
 
-.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
-  font-family: var(--ff-head); font-weight: 500; font-size: .92rem;
-  color: rgba(255,255,255,.9); padding: .5em .9em; border-radius: 999px;
+  font-family: var(--ff-head); font-weight: 600; font-size: 1.02rem;
+  text-transform: uppercase; letter-spacing: .04em; white-space: nowrap;
+  color: rgba(255,255,255,.9); padding: .45em .8em; border-radius: 6px;
   transition: color .3s, background .3s;
 }
 .scrolled .nav-links a { color: var(--slate); }
